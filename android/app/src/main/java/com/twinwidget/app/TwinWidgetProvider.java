@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.widget.RemoteViews;
 
-import com.twinwidget.app.R;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
