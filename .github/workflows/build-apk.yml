@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 22
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -31,6 +31,10 @@ jobs:
 
       - name: Sync Capacitor Android
         run: npx cap sync android
+
+      - name: Patch AGP versions in Gradle files
+        run: |
+          find android -name "build.gradle" -exec sed -i 's/8\.13\.0/8.7.3/g' {} +
 
       - name: Set up Java JDK 21
         uses: actions/setup-java@v4
