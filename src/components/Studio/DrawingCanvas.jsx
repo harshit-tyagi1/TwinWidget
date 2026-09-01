@@ -9,21 +9,8 @@ import {
   RotateCw,
   Trash2,
   Palette,
-  Layers,
 } from 'lucide-react';
-
-const COLORS = [
-  '#FFFFFF', // Pure White
-  '#EDE8E4', // Champagne Bone
-  '#D4CECA', // Warm Linen
-  '#9E9893', // Taupe Gray
-  '#676767', // Charcoal Slate
-  '#3A3A3A', // Graphite
-  '#C28E95', // Vintage Rose
-  '#9EBAA8', // Dusty Sage
-  '#C9A87C', // Warm Amber Ochre
-  '#7A4B56', // Fine-Art Wine
-];
+import ColorPickerModal from './ColorPickerModal';
 
 const BACKGROUNDS = [
   { id: 'black', label: 'Velvet Obsidian', value: '#010101' },
@@ -37,9 +24,12 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
 
   const [tool, setTool] = useState('neon'); // 'pen', 'brush', 'neon', 'highlighter', 'eraser'
   const [color, setColor] = useState('#EDE8E4');
+  const [opacity, setOpacity] = useState(1);
   const [lineWidth, setLineWidth] = useState(6);
   const [bgStyle, setBgStyle] = useState('black');
   
+  const [showColorModal, setShowColorModal] = useState(false);
+
   const [history, setHistory] = useState([]);
   const [redoList, setRedoList] = useState([]);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -176,9 +166,11 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
     ctx.globalCompositeOperation = 'source-over';
+    ctx.globalAlpha = opacity;
 
     if (tool === 'eraser') {
       ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
       ctx.strokeStyle = '#010101';
       ctx.fillStyle = '#010101';
       ctx.lineWidth = lineWidth * 2.5;
@@ -192,7 +184,7 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
     } else if (tool === 'highlighter') {
       ctx.strokeStyle = color;
       ctx.fillStyle = color;
-      ctx.globalAlpha = 0.35;
+      ctx.globalAlpha = opacity * 0.35;
       ctx.lineWidth = lineWidth * 2.2;
       ctx.shadowBlur = 0;
     } else if (tool === 'brush') {
@@ -267,9 +259,9 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
         />
       </div>
 
-      <div className="drawing-toolbar" style={{ marginTop: '12px' }}>
-        {/* Tool Selector - 1 line */}
-        <div className="tool-row">
+      <div className="drawing-toolbar" style={{ marginTop: '10px' }}>
+        {/* Tool Row + Rainbow Color Picker Trigger Button */}
+        <div className="tool-row" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
           <button
             className={`tool-chip ${tool === 'neon' ? 'active' : ''}`}
             onClick={() => setTool('neon')}
@@ -294,26 +286,58 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
           >
             <Eraser size={13} /> <span>Eraser</span>
           </button>
+
+          {/* Rainbow Color Picker Button (As shown in reference image) */}
+          <button
+            onClick={() => setShowColorModal(true)}
+            className="rainbow-color-btn"
+            title="Open Color Palette"
+            style={{
+              width: '38px',
+              height: '38px',
+              borderRadius: '10px',
+              background: 'var(--bg-secondary)',
+              border: '1px solid var(--bg-glass-border)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+              flexShrink: 0,
+              padding: '3px',
+              transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+            }}
+          >
+            <div
+              style={{
+                width: '26px',
+                height: '26px',
+                borderRadius: '50%',
+                background: 'conic-gradient(red, yellow, lime, aqua, blue, magenta, red)',
+                padding: '3px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                boxShadow: '0 0 8px rgba(0,0,0,0.5)',
+              }}
+            >
+              <div
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  borderRadius: '50%',
+                  backgroundColor: color,
+                  border: '1.5px solid #000000',
+                  boxShadow: 'inset 0 0 2px rgba(0,0,0,0.5)',
+                }}
+              />
+            </div>
+          </button>
         </div>
 
-        {/* Color Palette */}
-        {tool !== 'eraser' && (
-          <div className="color-palette">
-            {COLORS.map((c) => (
-              <button
-                key={c}
-                className={`color-dot ${color === c ? 'active' : ''}`}
-                style={{ backgroundColor: c }}
-                onClick={() => setColor(c)}
-              />
-            ))}
-          </div>
-        )}
-
         {/* Brush Size & History Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '2px' }}>
           <div className="size-slider-row" style={{ flex: 1 }}>
-            <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Size</span>
+            <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>Size</span>
             <input
               type="range"
               min="2"
@@ -332,23 +356,23 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
             />
           </div>
 
-          <div style={{ display: 'flex', gap: '6px' }}>
+          <div style={{ display: 'flex', gap: '5px' }}>
             <button className="icon-btn" onClick={undo} disabled={history.length <= 1} title="Undo">
-              <RotateCcw size={14} />
+              <RotateCcw size={13} />
             </button>
             <button className="icon-btn" onClick={redo} disabled={redoList.length === 0} title="Redo">
-              <RotateCw size={14} />
+              <RotateCw size={13} />
             </button>
             <button className="icon-btn" onClick={clearCanvas} title="Clear Canvas">
-              <Trash2 size={14} />
+              <Trash2 size={13} />
             </button>
           </div>
         </div>
 
         {/* Canvas Background Presets - ONLY 3 Options in 1 line */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', paddingTop: '4px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', paddingTop: '2px' }}>
           <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginRight: '2px', whiteSpace: 'nowrap' }}>Paper:</span>
-          <div style={{ display: 'flex', gap: '6px', flex: 1 }}>
+          <div style={{ display: 'flex', gap: '5px', flex: 1 }}>
             {BACKGROUNDS.map((b) => (
               <button
                 key={b.id}
@@ -374,6 +398,16 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
           </div>
         </div>
       </div>
+
+      {/* iOS-Style Full Color Picker Modal */}
+      <ColorPickerModal
+        isOpen={showColorModal}
+        onClose={() => setShowColorModal(false)}
+        currentColor={color}
+        onColorChange={(newCol) => setColor(newCol)}
+        opacity={opacity}
+        onOpacityChange={(newOp) => setOpacity(newOp)}
+      />
     </div>
   );
 }
