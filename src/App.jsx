@@ -38,7 +38,7 @@ import {
 export default function App() {
   // Navigation & UI States
   const [activeTab, setActiveTab] = useState('studio'); // 'studio', 'widget', 'vault'
-  const [studioMode, setStudioMode] = useState('draw'); // 'draw', 'camera', 'gallery', 'note'
+  const [studioMode, setStudioMode] = useState('note'); // 'note', 'draw', 'camera', 'gallery'
   const [isSending, setIsSending] = useState(false);
   const [sendSuccessToast, setSendSuccessToast] = useState(false);
 
@@ -454,6 +454,16 @@ export default function App() {
             {/* Mode Selector */}
             <div className="mode-selector">
               <button
+                className={`mode-btn ${studioMode === 'note' ? 'active' : ''}`}
+                onClick={() => setStudioMode('note')}
+              >
+                <div className="mode-icon-wrapper">
+                  <FileText size={16} />
+                </div>
+                <span>Note</span>
+              </button>
+
+              <button
                 className={`mode-btn ${studioMode === 'draw' ? 'active' : ''}`}
                 onClick={() => setStudioMode('draw')}
               >
@@ -482,20 +492,22 @@ export default function App() {
                 </div>
                 <span>Gallery</span>
               </button>
-
-              <button
-                className={`mode-btn ${studioMode === 'note' ? 'active' : ''}`}
-                onClick={() => setStudioMode('note')}
-              >
-                <div className="mode-icon-wrapper">
-                  <FileText size={16} />
-                </div>
-                <span>Note</span>
-              </button>
             </div>
 
             {/* Studio Workspace */}
             <div className="studio-workspace">
+              {studioMode === 'note' && (
+                <NoteStudio
+                  noteRef={noteRef}
+                  noteText={noteText}
+                  setNoteText={setNoteText}
+                  selectedTheme={selectedTheme}
+                  setSelectedTheme={setSelectedTheme}
+                  selectedMood={selectedMood}
+                  setSelectedMood={setSelectedMood}
+                />
+              )}
+
               {studioMode === 'draw' && <DrawingCanvas canvasRef={canvasRef} />}
 
               {studioMode === 'camera' && (
@@ -511,18 +523,6 @@ export default function App() {
                   selectedImage={galleryImage}
                   onImageSelected={(img) => setGalleryImage(img)}
                   onClear={() => setGalleryImage(null)}
-                />
-              )}
-
-              {studioMode === 'note' && (
-                <NoteStudio
-                  noteRef={noteRef}
-                  noteText={noteText}
-                  setNoteText={setNoteText}
-                  selectedTheme={selectedTheme}
-                  setSelectedTheme={setSelectedTheme}
-                  selectedMood={selectedMood}
-                  setSelectedMood={setSelectedMood}
                 />
               )}
 
