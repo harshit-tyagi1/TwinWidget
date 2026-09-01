@@ -1,0 +1,14 @@
+{
+  "appId": "com.twinwidget.app",
+  "appName": "TwinWidget",
+  "webDir": "dist",
+  "server": {
+    "url": "https://harshit-tyagi1.github.io/TwinWidget/",
+    "cleartext": true
+  },
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true
+  }
+}

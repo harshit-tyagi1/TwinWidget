@@ -1,75 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/widget_root"
+    android:id="@+id/widget_root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/widget_background_card"
-    android:clipToOutline="true">
+    android:background="@android:color/black"
+    android:padding="8dp">
 
-    <!-- Decrypted Media Image -->
+    <!-- Encrypted Moment Image Display -->
     <ImageView
-        android:id="@+id/widget_image"
+        android:id="@+id/widget_image_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:contentDescription="Partner Photo" />
+        android:contentDescription="Encrypted Live Note" />
 
-    <!-- Sender Header Badge -->
+    <!-- Top Badge Row -->
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_margin="10dp"
         android:orientation="horizontal"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:paddingTop="3dp"
-        android:paddingBottom="3dp"
-        android:background="@drawable/widget_badge_bg">
+        android:gravity="center_vertical"
+        android:padding="6dp">
 
         <TextView
             android:id="@+id/widget_sender_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Partner"
-            android:textColor="#FFFFFF"
+            android:text="✨ TwinWidget"
+            android:textColor="#F9F9F9"
             android:textSize="11sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:background="#99010101"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/widget_time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Live"
+            android:textColor="#EDE8E4"
+            android:textSize="10sp"
+            android:background="#99010101"
+            android:paddingHorizontal="6dp"
+            android:paddingVertical="2dp" />
     </LinearLayout>
-
-    <!-- E2EE Shield Tag -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:text="🔒 E2EE"
-        android:textColor="#10B981"
-        android:textSize="10sp"
-        android:textStyle="bold"
-        android:paddingStart="6dp"
-        android:paddingEnd="6dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:background="@drawable/widget_badge_bg" />
-
-    <!-- Time Tag -->
-    <TextView
-        android:id="@+id/widget_timestamp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:text="Just now"
-        android:textColor="#E2E8F0"
-        android:textSize="10sp"
-        android:paddingStart="6dp"
-        android:paddingEnd="6dp"
-        android:paddingTop="2dp"
-        android:paddingBottom="2dp"
-        android:background="@drawable/widget_badge_bg" />
 
 </RelativeLayout>

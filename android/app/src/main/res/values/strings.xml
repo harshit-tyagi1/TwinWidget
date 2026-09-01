@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">TwinWidget</string>
+    <string name="title_activity_main">TwinWidget</string>
+    <string name="package_name">com.twinwidget.app</string>
+    <string name="custom_url_scheme">com.twinwidget.app</string>
+</resources>
