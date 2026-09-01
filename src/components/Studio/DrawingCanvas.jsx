@@ -14,23 +14,23 @@ import {
 
 const COLORS = [
   '#FFFFFF', // Pure White
-  '#EC4899', // Electric Pink
-  '#8B5CF6', // Cyber Purple
-  '#06B6D4', // Neon Cyan
-  '#10B981', // Emerald Green
-  '#F59E0B', // Bright Amber
-  '#F43F5E', // Rose Red
-  '#3B82F6', // Royal Blue
-  '#EAB308', // Warm Yellow
-  '#A855F7', // Lilac
+  '#EDE8E4', // Champagne Bone
+  '#D4CECA', // Warm Linen
+  '#9E9893', // Taupe Gray
+  '#676767', // Charcoal Slate
+  '#3A3A3A', // Graphite
+  '#C28E95', // Vintage Rose
+  '#9EBAA8', // Dusty Sage
+  '#C9A87C', // Warm Amber Ochre
+  '#7A4B56', // Fine-Art Wine
 ];
 
 const BACKGROUNDS = [
-  { id: 'black', label: 'OLED Black', value: '#000000' },
-  { id: 'indigo', label: 'Dark Navy', value: '#0d1117' },
-  { id: 'grid', label: 'Grid Paper', value: 'grid' },
-  { id: 'dots', label: 'Dot Matrix', value: 'dots' },
-  { id: 'sunset', label: 'Sunset Glow', value: 'sunset' },
+  { id: 'black', label: 'Velvet Obsidian', value: '#010101' },
+  { id: 'indigo', label: 'Studio Noir', value: '#141414' },
+  { id: 'linen', label: 'Warm Silk', value: 'linen' },
+  { id: 'grid', label: 'Editorial Grid', value: 'grid' },
+  { id: 'dots', label: 'Fine Dots', value: 'dots' },
 ];
 
 export default function DrawingCanvas({ onReady, canvasRef }) {
@@ -38,7 +38,7 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
   const activeCanvas = canvasRef || localRef;
 
   const [tool, setTool] = useState('neon'); // 'pen', 'brush', 'neon', 'highlighter', 'eraser'
-  const [color, setColor] = useState('#EC4899');
+  const [color, setColor] = useState('#EDE8E4');
   const [lineWidth, setLineWidth] = useState(6);
   const [bgStyle, setBgStyle] = useState('black');
   
@@ -66,22 +66,22 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
     ctx.save();
     
     if (bg === 'black') {
-      ctx.fillStyle = '#000000';
+      ctx.fillStyle = '#010101';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     } else if (bg === 'indigo') {
-      ctx.fillStyle = '#0d1117';
+      ctx.fillStyle = '#141414';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-    } else if (bg === 'sunset') {
+    } else if (bg === 'linen') {
       const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, '#2d0036');
-      grad.addColorStop(0.5, '#4a0e4e');
-      grad.addColorStop(1, '#0f051d');
+      grad.addColorStop(0, '#242220');
+      grad.addColorStop(0.5, '#191817');
+      grad.addColorStop(1, '#0e0e0d');
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     } else if (bg === 'grid') {
-      ctx.fillStyle = '#090a0f';
+      ctx.fillStyle = '#010101';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+      ctx.strokeStyle = 'rgba(237,232,228,0.08)';
       ctx.lineWidth = 1;
       const step = 30;
       for (let x = 0; x < canvas.width; x += step) {
@@ -97,9 +97,9 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
         ctx.stroke();
       }
     } else if (bg === 'dots') {
-      ctx.fillStyle = '#090a0f';
+      ctx.fillStyle = '#010101';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'rgba(255,255,255,0.18)';
+      ctx.fillStyle = 'rgba(237,232,228,0.2)';
       const step = 25;
       for (let x = 12; x < canvas.width; x += step) {
         for (let y = 12; y < canvas.height; y += step) {

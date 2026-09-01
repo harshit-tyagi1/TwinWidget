@@ -2,21 +2,21 @@ import React, { useState, useRef } from 'react';
 import { Heart, Sparkles, Coffee, Moon, Flame, Zap, Smile } from 'lucide-react';
 
 const THEMES = [
-  { id: 'cyber', label: 'Cyber', bg: 'linear-gradient(135deg, #1e1b4b 0%, #4c1d95 100%)', text: '#f5f3ff' },
-  { id: 'sunset', label: 'Sunset', bg: 'linear-gradient(135deg, #831843 0%, #be185d 50%, #f59e0b 100%)', text: '#fff' },
-  { id: 'emerald', label: 'Emerald', bg: 'linear-gradient(135deg, #064e3b 0%, #047857 50%, #06b6d4 100%)', text: '#ecfdf5' },
-  { id: 'midnight', label: 'Midnight', bg: 'linear-gradient(180deg, #0f172a 0%, #020617 100%)', text: '#e2e8f0' },
-  { id: 'amber', label: 'Warm Honey', bg: 'linear-gradient(135deg, #78350f 0%, #d97706 100%)', text: '#fffbeb' },
-  { id: 'rose', label: 'Velvet Rose', bg: 'linear-gradient(135deg, #4c0519 0%, #9f1239 100%)', text: '#ffe4e6' },
+  { id: 'champagne', label: 'Champagne Silk', bg: 'linear-gradient(135deg, #242220 0%, #151413 100%)', text: '#F9F9F9' },
+  { id: 'obsidian', label: 'Velvet Noir', bg: 'linear-gradient(180deg, #181818 0%, #010101 100%)', text: '#EDE8E4' },
+  { id: 'linen', label: 'Warm Bone', bg: 'linear-gradient(135deg, #2f2c29 0%, #1b1918 100%)', text: '#FFFFFF' },
+  { id: 'slate', label: 'Editorial Slate', bg: 'linear-gradient(135deg, #2c2f33 0%, #1a1c1e 100%)', text: '#F9F9F9' },
+  { id: 'rose', label: 'Vintage Rose', bg: 'linear-gradient(135deg, #2e1d21 0%, #170d10 100%)', text: '#EDE8E4' },
+  { id: 'sage', label: 'Dusty Sage', bg: 'linear-gradient(135deg, #1c2620 0%, #0e1411 100%)', text: '#F9F9F9' },
 ];
 
 const MOODS = [
-  { id: 'love', icon: '❤️', label: 'Thinking of you' },
-  { id: 'vibe', icon: '✨', label: 'Good vibes' },
-  { id: 'coffee', icon: '☕', label: 'Coffee break' },
-  { id: 'night', icon: '🌙', label: 'Good night' },
-  { id: 'energy', icon: '⚡', label: 'Energy burst' },
-  { id: 'fire', icon: '🔥', label: 'Miss you!' },
+  { id: 'love', icon: '🕊️', label: 'Fine Art' },
+  { id: 'vibe', icon: '✨', label: 'Timeless' },
+  { id: 'coffee', icon: '☕', label: 'Moments' },
+  { id: 'night', icon: '🌙', label: 'Midnight' },
+  { id: 'energy', icon: '🏛️', label: 'Memories' },
+  { id: 'fire', icon: '🕯️', label: 'Thinking of you' },
 ];
 
 export default function NoteStudio({ noteText, setNoteText, selectedTheme, setSelectedTheme, selectedMood, setSelectedMood, noteRef }) {
