@@ -81,7 +81,18 @@ jobs:
       - name: Build Android Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug -x lint -x test --no-daemon
+          ./gradlew assembleDebug -x lint -x test --no-daemon > ../gradle_out.log 2>&1
+
+      - name: Commit Error Log on Failure
+        if: failure()
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B debug-log
+          cp gradle_out.log debug_gradle_output.txt
+          git add debug_gradle_output.txt
+          git commit -m "Auto-captured Gradle failure log" || true
+          git push -f origin debug-log || true
 
       - name: Locate & Package APK
         run: |
