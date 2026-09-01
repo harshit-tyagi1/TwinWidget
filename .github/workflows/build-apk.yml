@@ -74,7 +74,8 @@ jobs:
       - name: Build Android Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug -x lint -x test --no-daemon
+          set -o pipefail
+          ./gradlew assembleDebug -x lint -x test --no-daemon 2>&1 | tee ../gradle-build.log
 
       - name: Locate & Package APK
         run: |
