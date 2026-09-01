@@ -17,7 +17,7 @@ jobs:
       - name: Checkout Source Code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js 22
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -47,7 +47,7 @@ jobs:
           cd android
           ./gradlew assembleDebug --stacktrace --no-daemon
 
-      - name: Locate & Rename APK
+      - name: Locate & Package APK
         run: |
           mkdir -p release_output
           find android/app/build/outputs/apk -name "*.apk" -exec cp {} release_output/TwinWidget.apk \;
@@ -77,5 +77,6 @@ jobs:
             2. Tap to Install (Allow Unknown Sources / Install anyway).
             3. Long-press on your home screen -> **Widgets** -> **TwinWidget** -> Place the 2x2 widget!
           files: release_output/TwinWidget.apk
+          overwrite: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

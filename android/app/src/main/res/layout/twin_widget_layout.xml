@@ -3,8 +3,8 @@
     android:id="@+id/widget_root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
-    android:padding="8dp">
+    android:background="#010101"
+    android:padding="6dp">
 
     <!-- Encrypted Moment Image Display -->
     <ImageView
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:contentDescription="Encrypted Live Note" />
+        android:contentDescription="@string/app_name" />
 
     <!-- Top Badge Row -->
     <LinearLayout
@@ -21,7 +21,7 @@
         android:layout_alignParentTop="true"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:padding="6dp">
+        android:padding="4dp">
 
         <TextView
             android:id="@+id/widget_sender_name"
@@ -32,8 +32,10 @@
             android:textSize="11sp"
             android:textStyle="bold"
             android:background="#99010101"
-            android:paddingHorizontal="6dp"
-            android:paddingVertical="2dp" />
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
 
         <View
             android:layout_width="0dp"
@@ -48,8 +50,10 @@
             android:textColor="#EDE8E4"
             android:textSize="10sp"
             android:background="#99010101"
-            android:paddingHorizontal="6dp"
-            android:paddingVertical="2dp" />
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp" />
     </LinearLayout>
 
 </RelativeLayout>
