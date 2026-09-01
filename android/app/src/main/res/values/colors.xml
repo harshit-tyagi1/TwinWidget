@@ -3,4 +3,8 @@
     <color name="colorPrimary">#010101</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#EDE8E4</color>
+    <color name="widget_background">#010101</color>
+    <color name="widget_badge_bg">#99010101</color>
+    <color name="text_primary">#F9F9F9</color>
+    <color name="text_secondary">#EDE8E4</color>
 </resources>
