@@ -39,8 +39,9 @@ jobs:
           find . -name "build.gradle" -exec sed -i 's/8\.13\.0/8.7.3/g' {} +
           find . -name "build.gradle" -exec sed -i 's/abortOnError = true/abortOnError = false/g' {} +
           find . -name "build.gradle" -exec sed -i 's/warningsAsErrors = true/warningsAsErrors = false/g' {} +
-          find . -name "build.gradle" -exec sed -i 's/compileSdk = 36/compileSdk = 35/g' {} +
-          find . -name "build.gradle" -exec sed -i 's/targetSdk = 36/targetSdk = 35/g' {} +
+          find node_modules/@capacitor -name "build.gradle" -exec sed -i 's/compileSdk = .*/compileSdk = 35/g' {} +
+          find node_modules/@capacitor -name "build.gradle" -exec sed -i 's/targetSdkVersion .*/targetSdkVersion 35/g' {} +
+          find node_modules/@capacitor -name "build.gradle" -exec sed -i 's/minSdkVersion .*/minSdkVersion 24/g' {} +
           find . -name "build.gradle" -exec sed -i 's/36/35/g' {} +
           find android -name "AndroidManifest.xml" -exec sed -i 's/xmlns:amazon="[^"]*"//g' {} +
           cat << 'EOF' > android/variables.gradle
