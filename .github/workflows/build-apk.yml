@@ -32,11 +32,12 @@ jobs:
       - name: Sync Capacitor Android
         run: npx cap sync android
 
-      - name: Patch AGP and Lint Across Entire Project
+      - name: Patch AGP, Lint, and Manifest across all modules
         run: |
           find . -name "build.gradle" -exec sed -i 's/8\.13\.0/8.7.3/g' {} +
           find . -name "build.gradle" -exec sed -i 's/abortOnError = true/abortOnError = false/g' {} +
           find . -name "build.gradle" -exec sed -i 's/warningsAsErrors = true/warningsAsErrors = false/g' {} +
+          find android/capacitor-cordova-android-plugins -name "AndroidManifest.xml" -exec sed -i 's/android:usesCleartextTraffic="true"//g' {} +
 
       - name: Set up Java JDK 21
         uses: actions/setup-java@v4
