@@ -37,6 +37,7 @@ jobs:
           find . -name "build.gradle" -exec sed -i 's/8\.13\.0/8.7.3/g' {} +
           find . -name "build.gradle" -exec sed -i 's/abortOnError = true/abortOnError = false/g' {} +
           find . -name "build.gradle" -exec sed -i 's/warningsAsErrors = true/warningsAsErrors = false/g' {} +
+          find android -name "AndroidManifest.xml" -exec sed -i 's/xmlns:amazon="[^"]*"//g' {} +
           find android/capacitor-cordova-android-plugins -name "AndroidManifest.xml" -exec sed -i 's/android:usesCleartextTraffic="true"//g' {} +
 
       - name: Set up Java JDK 21
