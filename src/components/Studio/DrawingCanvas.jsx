@@ -27,8 +27,6 @@ const COLORS = [
 
 const BACKGROUNDS = [
   { id: 'black', label: 'Velvet Obsidian', value: '#010101' },
-  { id: 'indigo', label: 'Studio Noir', value: '#141414' },
-  { id: 'linen', label: 'Warm Silk', value: 'linen' },
   { id: 'grid', label: 'Editorial Grid', value: 'grid' },
   { id: 'dots', label: 'Fine Dots', value: 'dots' },
 ];
@@ -67,16 +65,6 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
     
     if (bg === 'black') {
       ctx.fillStyle = '#010101';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    } else if (bg === 'indigo') {
-      ctx.fillStyle = '#141414';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-    } else if (bg === 'linen') {
-      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      grad.addColorStop(0, '#242220');
-      grad.addColorStop(0.5, '#191817');
-      grad.addColorStop(1, '#0e0e0d');
-      ctx.fillStyle = grad;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     } else if (bg === 'grid') {
       ctx.fillStyle = '#010101';
@@ -191,8 +179,8 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
 
     if (tool === 'eraser') {
       ctx.globalCompositeOperation = 'source-over';
-      ctx.strokeStyle = bgStyle === 'black' ? '#000000' : '#0d1117';
-      ctx.fillStyle = bgStyle === 'black' ? '#000000' : '#0d1117';
+      ctx.strokeStyle = '#010101';
+      ctx.fillStyle = '#010101';
       ctx.lineWidth = lineWidth * 2.5;
       ctx.shadowBlur = 0;
     } else if (tool === 'neon') {
@@ -280,31 +268,31 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
       </div>
 
       <div className="drawing-toolbar" style={{ marginTop: '12px' }}>
-        {/* Tool Selector */}
+        {/* Tool Selector - 1 line */}
         <div className="tool-row">
           <button
             className={`tool-chip ${tool === 'neon' ? 'active' : ''}`}
             onClick={() => setTool('neon')}
           >
-            <Sparkles size={14} /> Neon Glow
+            <Sparkles size={13} /> <span>Neon Glow</span>
           </button>
           <button
             className={`tool-chip ${tool === 'pen' ? 'active' : ''}`}
             onClick={() => setTool('pen')}
           >
-            <PenTool size={14} /> Pen
+            <PenTool size={13} /> <span>Pen</span>
           </button>
           <button
             className={`tool-chip ${tool === 'highlighter' ? 'active' : ''}`}
             onClick={() => setTool('highlighter')}
           >
-            <Highlighter size={14} /> Marker
+            <Highlighter size={13} /> <span>Marker</span>
           </button>
           <button
             className={`tool-chip ${tool === 'eraser' ? 'active' : ''}`}
             onClick={() => setTool('eraser')}
           >
-            <Eraser size={14} /> Eraser
+            <Eraser size={13} /> <span>Eraser</span>
           </button>
         </div>
 
@@ -337,8 +325,8 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
             <div
               className="size-preview-dot"
               style={{
-                width: `${Math.min(22, lineWidth)}px`,
-                height: `${Math.min(22, lineWidth)}px`,
+                width: `${Math.min(20, lineWidth)}px`,
+                height: `${Math.min(20, lineWidth)}px`,
                 backgroundColor: color,
               }}
             />
@@ -357,26 +345,33 @@ export default function DrawingCanvas({ onReady, canvasRef }) {
           </div>
         </div>
 
-        {/* Canvas Background Presets */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', overflowX: 'auto', paddingTop: '4px' }}>
-          <span style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginRight: '4px' }}>Paper:</span>
-          {BACKGROUNDS.map((b) => (
-            <button
-              key={b.id}
-              onClick={() => handleBgChange(b.id)}
-              style={{
-                padding: '3px 8px',
-                borderRadius: '6px',
-                fontSize: '0.7rem',
-                border: bgStyle === b.id ? '1px solid var(--accent-purple)' : '1px solid var(--bg-glass-border)',
-                background: bgStyle === b.id ? 'rgba(139, 92, 246, 0.2)' : 'var(--bg-secondary)',
-                color: bgStyle === b.id ? '#fff' : 'var(--text-secondary)',
-                cursor: 'pointer',
-              }}
-            >
-              {b.label}
-            </button>
-          ))}
+        {/* Canvas Background Presets - ONLY 3 Options in 1 line */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', paddingTop: '4px' }}>
+          <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)', marginRight: '2px', whiteSpace: 'nowrap' }}>Paper:</span>
+          <div style={{ display: 'flex', gap: '6px', flex: 1 }}>
+            {BACKGROUNDS.map((b) => (
+              <button
+                key={b.id}
+                onClick={() => handleBgChange(b.id)}
+                style={{
+                  flex: 1,
+                  padding: '5px 8px',
+                  borderRadius: '8px',
+                  fontSize: '0.72rem',
+                  fontWeight: 600,
+                  whiteSpace: 'nowrap',
+                  textAlign: 'center',
+                  border: bgStyle === b.id ? '1px solid var(--accent-bone)' : '1px solid var(--bg-glass-border)',
+                  background: bgStyle === b.id ? 'var(--accent-bone)' : 'var(--bg-secondary)',
+                  color: bgStyle === b.id ? 'var(--text-inverse)' : 'var(--text-secondary)',
+                  cursor: 'pointer',
+                  transition: 'all 0.15s ease',
+                }}
+              >
+                {b.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>

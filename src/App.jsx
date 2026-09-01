@@ -393,29 +393,29 @@ export default function App() {
         )}
       </div>
 
-      {/* Main Tab Navigation */}
+      {/* Main Tab Navigation - Single Line */}
       <div className="nav-tab-bar">
         <button
           className={`nav-tab ${activeTab === 'studio' ? 'active' : ''}`}
           onClick={() => setActiveTab('studio')}
         >
-          <PenTool size={16} />
-          <span>Creator Studio</span>
+          <PenTool size={15} />
+          <span>Studio</span>
         </button>
 
         <button
           className={`nav-tab ${activeTab === 'widget' ? 'active' : ''}`}
           onClick={() => setActiveTab('widget')}
         >
-          <Smartphone size={16} />
-          <span>Widget Live</span>
+          <Smartphone size={15} />
+          <span>Widget</span>
         </button>
 
         <button
           className={`nav-tab ${activeTab === 'vault' ? 'active' : ''}`}
           onClick={() => setActiveTab('vault')}
         >
-          <BookMarked size={16} />
+          <BookMarked size={15} />
           <span>Scrapbook ({memories.length})</span>
         </button>
       </div>
@@ -490,7 +490,7 @@ export default function App() {
                 <div className="mode-icon-wrapper">
                   <FileText size={16} />
                 </div>
-                <span>Sticky Note</span>
+                <span>Note</span>
               </button>
             </div>
 
