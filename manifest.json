@@ -1,15 +1,16 @@
 {
-  "name": "TwinWidget",
+  "name": "TwinWidget • Private E2EE Widget",
   "short_name": "TwinWidget",
   "description": "Private, End-to-End Encrypted Live Home Screen Widget for Two",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#090A0F",
-  "theme_color": "#090A0F",
+  "background_color": "#010101",
+  "theme_color": "#010101",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='120' fill='%23090A0F'/><rect x='32' y='32' width='448' height='448' rx='96' fill='url(%23g)'/><defs><linearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'><stop offset='0%25' stop-color='%238B5CF6'/><stop offset='100%25' stop-color='%23EC4899'/></linearGradient></defs><path d='M256 160c-40 0-70 30-70 70 0 50 70 120 70 120s70-70 70-120c0-40-30-70-70-70z' fill='white'/></svg>",
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='120' fill='%23010101'/><rect x='32' y='32' width='448' height='448' rx='96' fill='%23141414' stroke='%23EDE8E4' stroke-width='8'/><circle cx='256' cy='256' r='110' fill='none' stroke='%23EDE8E4' stroke-width='16'/><path d='M256 180c-25 0-45 20-45 45 0 32 45 75 45 75s45-43 45-75c0-25-20-45-45-45z' fill='%23EDE8E4'/></svg>",
       "sizes": "512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
