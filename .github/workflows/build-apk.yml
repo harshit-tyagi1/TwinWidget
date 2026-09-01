@@ -86,7 +86,12 @@ jobs:
       - name: Locate & Package APK
         run: |
           mkdir -p release_output
-          find android/app/build/outputs/apk/debug -type f -name "*.apk" | head -n 1 | xargs -I {} cp {} release_output/TwinWidget.apk
+          APK_FILE=$(find android/app/build/outputs -type f -name "*.apk" | head -n 1)
+          if [ -z "$APK_FILE" ]; then
+            APK_FILE=$(find . -type f -name "*.apk" | head -n 1)
+          fi
+          echo "Found APK at: $APK_FILE"
+          cp "$APK_FILE" release_output/TwinWidget.apk
           ls -la release_output/
 
       - name: Upload APK as Workflow Artifact
