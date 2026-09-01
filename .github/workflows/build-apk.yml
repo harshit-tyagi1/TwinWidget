@@ -39,7 +39,9 @@ jobs:
           find . -name "build.gradle" -exec sed -i 's/8\.13\.0/8.7.3/g' {} +
           find . -name "build.gradle" -exec sed -i 's/abortOnError = true/abortOnError = false/g' {} +
           find . -name "build.gradle" -exec sed -i 's/warningsAsErrors = true/warningsAsErrors = false/g' {} +
-          find . -name "build.gradle" -exec sed -i 's/: 36/: 35/g' {} +
+          find . -name "build.gradle" -exec sed -i 's/compileSdk = 36/compileSdk = 35/g' {} +
+          find . -name "build.gradle" -exec sed -i 's/targetSdk = 36/targetSdk = 35/g' {} +
+          find . -name "build.gradle" -exec sed -i 's/36/35/g' {} +
           find android -name "AndroidManifest.xml" -exec sed -i 's/xmlns:amazon="[^"]*"//g' {} +
           find android/capacitor-cordova-android-plugins -name "AndroidManifest.xml" -exec sed -i 's/android:usesCleartextTraffic="true"//g' {} +
           cat << 'EOF' > android/variables.gradle
@@ -79,7 +81,13 @@ jobs:
       - name: Build Android Debug APK
         run: |
           cd android
-          ./gradlew assembleDebug -x lint -x test --stacktrace --no-daemon
+          ./gradlew assembleDebug -x lint -x test --no-daemon 2>&1 | tee ../gradle.log || {
+            echo "## ❌ Gradle Build Failure Details" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 80 ../gradle.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            exit 1
+          }
 
       - name: Locate & Package APK
         run: |
