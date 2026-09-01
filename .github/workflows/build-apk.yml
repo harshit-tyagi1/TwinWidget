@@ -32,13 +32,31 @@ jobs:
       - name: Sync Capacitor Android
         run: npx cap sync android
 
-      - name: Patch AGP, Lint, and Manifest across all modules
+      - name: Patch AGP, Lint, and Dependencies Across Entire Project
         run: |
           find . -name "build.gradle" -exec sed -i 's/8\.13\.0/8.7.3/g' {} +
           find . -name "build.gradle" -exec sed -i 's/abortOnError = true/abortOnError = false/g' {} +
           find . -name "build.gradle" -exec sed -i 's/warningsAsErrors = true/warningsAsErrors = false/g' {} +
           find android -name "AndroidManifest.xml" -exec sed -i 's/xmlns:amazon="[^"]*"//g' {} +
           find android/capacitor-cordova-android-plugins -name "AndroidManifest.xml" -exec sed -i 's/android:usesCleartextTraffic="true"//g' {} +
+          cat << 'EOF' > android/variables.gradle
+          ext {
+              minSdkVersion = 24
+              compileSdkVersion = 35
+              targetSdkVersion = 35
+              androidxActivityVersion = '1.9.3'
+              androidxAppCompatVersion = '1.7.0'
+              androidxCoordinatorLayoutVersion = '1.2.0'
+              androidxCoreVersion = '1.13.1'
+              androidxFragmentVersion = '1.8.5'
+              coreSplashScreenVersion = '1.0.1'
+              androidxWebkitVersion = '1.12.1'
+              junitVersion = '4.13.2'
+              androidxJunitVersion = '1.2.1'
+              androidxEspressoCoreVersion = '3.6.1'
+              cordovaAndroidVersion = '10.1.1'
+          }
+          EOF
 
       - name: Set up Java JDK 21
         uses: actions/setup-java@v4
