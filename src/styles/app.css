@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
   max-width: 500px;
   margin: 0 auto;
   background: var(--bg-primary);
@@ -12,6 +13,7 @@
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.95);
   border-left: 1px solid var(--bg-glass-border);
   border-right: 1px solid var(--bg-glass-border);
+  padding-bottom: max(16px, env(safe-area-inset-bottom, 16px));
 }
 
 @media (min-width: 768px) {
@@ -30,20 +32,23 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 240px;
+  height: 280px;
   background: var(--grad-glow);
   pointer-events: none;
   z-index: 0;
 }
 
-/* Header */
+/* Header with Safe Area Status Bar Clearance */
 .app-header {
   position: relative;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 16px;
+  padding-top: max(calc(env(safe-area-inset-top, 0px) + 12px), 44px);
+  padding-bottom: 14px;
+  padding-left: max(calc(env(safe-area-inset-left, 0px) + 16px), 16px);
+  padding-right: max(calc(env(safe-area-inset-right, 0px) + 16px), 16px);
   background: var(--bg-glass-heavy);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -775,7 +780,10 @@
   align-items: center;
   justify-content: center;
   z-index: 100;
-  padding: 16px;
+  padding-top: max(calc(env(safe-area-inset-top, 0px) + 20px), 20px);
+  padding-bottom: max(calc(env(safe-area-inset-bottom, 0px) + 20px), 20px);
+  padding-left: max(calc(env(safe-area-inset-left, 0px) + 16px), 16px);
+  padding-right: max(calc(env(safe-area-inset-right, 0px) + 16px), 16px);
   animation: fadeIn 200ms ease-out;
 }
 
