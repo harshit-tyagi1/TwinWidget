@@ -160,31 +160,6 @@
   box-shadow: 0 0 12px rgba(237, 232, 228, 0.3);
 }
 
-/* Security Ribbon */
-.security-ribbon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  padding: 5px 10px;
-  background: rgba(237, 232, 228, 0.05);
-  border-bottom: 1px solid var(--bg-glass-border);
-  font-size: 0.68rem;
-  font-weight: 600;
-  color: var(--accent-bone);
-  letter-spacing: 0.03em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.security-ribbon.unpaired {
-  background: rgba(103, 103, 103, 0.12);
-  border-color: rgba(103, 103, 103, 0.25);
-  color: var(--text-muted);
-}
-
 /* Navigation Tabs - Strict Single Line */
 .nav-tab-bar {
   display: flex;

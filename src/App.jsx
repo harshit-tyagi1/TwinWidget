@@ -8,8 +8,6 @@ import {
   Send,
   Smartphone,
   BookMarked,
-  ShieldCheck,
-  ShieldAlert,
   Sparkles,
   Lock,
 } from 'lucide-react';
@@ -375,23 +373,6 @@ export default function App() {
         activeTab={activeTab}
         setActiveTab={setActiveTab}
       />
-
-      {/* Security Ribbon */}
-      <div className={`security-ribbon ${!pairingKey ? 'unpaired' : ''}`}>
-        {pairingKey ? (
-          <>
-            <ShieldCheck size={14} />
-            <span>End-to-End Encrypted (AES-256-GCM) • Private Channel Active</span>
-          </>
-        ) : (
-          <>
-            <ShieldAlert size={14} />
-            <span onClick={() => setShowPairingModal(true)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-              Pair your friend’s device to enable zero-knowledge encryption
-            </span>
-          </>
-        )}
-      </div>
 
       {/* Main Tab Navigation - Single Line */}
       <div className="nav-tab-bar">
