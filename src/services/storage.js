@@ -17,13 +17,13 @@ const DEFAULT_SETTINGS = {
   pinCode: '',
   cloudProvider: 'firebase',
   firebaseConfig: {
-    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
-    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || (import.meta.env.VITE_FIREBASE_PROJECT_ID ? `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebaseapp.com` : ""),
-    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL || (import.meta.env.VITE_FIREBASE_PROJECT_ID ? `https://${import.meta.env.VITE_FIREBASE_PROJECT_ID}-default-rtdb.asia-southeast1.firebasedatabase.app` : ""),
-    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || (import.meta.env.VITE_FIREBASE_PROJECT_ID ? `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebasestorage.app` : ""),
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
-    appId: import.meta.env.VITE_FIREBASE_APP_ID || ""
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyAMp1SpE8Ut00jELGXSrCtvNFFRLj7ao-o",
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "twinwidget-app.firebaseapp.com",
+    databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL || "https://twinwidget-app-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "twinwidget-app",
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "twinwidget-app.firebasestorage.app",
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "29364680080",
+    appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:29364680080:web:fff3e20bfc84c39967af15"
   },
 };
 
