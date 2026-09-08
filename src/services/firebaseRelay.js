@@ -8,13 +8,13 @@ import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getDatabase, ref, set, onValue, off } from 'firebase/database';
 
 export const DEFAULT_FIREBASE_CONFIG = {
-  apiKey: "AIzaSyAMp1SpE8Ut00jELGXSrCtvNFFRLj7ao-o",
-  authDomain: "twinwidget-app.firebaseapp.com",
-  databaseURL: "https://twinwidget-app-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "twinwidget-app",
-  storageBucket: "twinwidget-app.firebasestorage.app",
-  messagingSenderId: "29364680080",
-  appId: "1:29364680080:web:469fc48d658c755167af15"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "",
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || (import.meta.env.VITE_FIREBASE_PROJECT_ID ? `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebaseapp.com` : ""),
+  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL || (import.meta.env.VITE_FIREBASE_PROJECT_ID ? `https://${import.meta.env.VITE_FIREBASE_PROJECT_ID}-default-rtdb.asia-southeast1.firebasedatabase.app` : ""),
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || (import.meta.env.VITE_FIREBASE_PROJECT_ID ? `${import.meta.env.VITE_FIREBASE_PROJECT_ID}.firebasestorage.app` : ""),
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "",
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || ""
 };
 
 class FirebaseRelayService {
